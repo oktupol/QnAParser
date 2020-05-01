@@ -7,6 +7,9 @@ import { Util } from './util/Util';
 import { SortFunctions, SortFunction } from './util/SortFunctions';
 
 program
+    .name('qnaparser')
+    .description('Parse a qna file with this program')
+    .version('1.0.0')
     .requiredOption('-f, --file <file>', 'The QnA answer file to be parsed')
     .option('-l, --page-length <length>', 'The length after which a page should stop', '400')
     .option('-a, --page-headers', 'Specifies, that every page should contain the question as page header', false)
