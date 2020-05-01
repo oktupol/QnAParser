@@ -16,25 +16,24 @@ export class QuestionFormatter {
     }
 
     private initializeAnswers(): void {
-        this.sortedAnswers = [...this.question.answers].map(a => a.trim()).filter(a => a.length > 0);
+        this.sortedAnswers = this.question.answers.map(a => a.trim()).filter(a => a.length > 0);
 
         this.sortedAnswers.sort(this.sortFn);
     }
 
     private initializePages(): void {
-        const answers = [...this.sortedAnswers];
         let firstPage = true;
         let nextPage = '';
         let i = 1;
 
-        while (answers.length > 0) {
+        while (this.sortedAnswers.length > 0) {
             if (nextPage.length === 0 && (firstPage || this.includeTitleInEveryPage)) {
                 // Print question as page header
                 nextPage += '*Q: ' + this.question.question.trim() + '*\n';
                 firstPage = false;
             }
 
-            nextPage += '\n*' + i++ + ':* ' + answers.shift();
+            nextPage += '\n*' + i++ + ':* ' + this.sortedAnswers.shift();
 
             if (nextPage.length >= this.pageLength) {
                 this.pages.push(nextPage);
