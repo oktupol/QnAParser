@@ -5,6 +5,7 @@ import { QnaParser } from './service/QnaParser';
 import { QuestionFormatter } from './service/QuestionFormatter';
 import { Util } from './util/Util';
 import { KeyboardShortcut } from './interface/KeyboardShortcut';
+import { SortFunction } from './util/SortFunctions';
 
 export class App {
     private parser: QnaParser;
@@ -27,7 +28,8 @@ export class App {
         private pageHeaders: boolean,
         private currentPage: number,
         private copyAll: boolean,
-        private markdown: boolean
+        private markdown: boolean,
+        private sortFunction: SortFunction
     ) {
         this.parser = new QnaParser(this.fileName);
         this.init();
@@ -36,7 +38,7 @@ export class App {
 
     private init(): void {
         this.parser.questions.forEach((q) =>
-            new QuestionFormatter(q, this.pageLength, this.pageHeaders).pages
+            new QuestionFormatter(q, this.pageLength, this.pageHeaders, this.sortFunction).pages
                 .map((p) => p.trim())
                 .filter((p) => p.length > 0)
                 .forEach((p) => this.pages.push(p))

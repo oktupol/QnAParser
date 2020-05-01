@@ -1,6 +1,5 @@
 import { Question } from '../model/Question';
-
-export type SortFunction = (a: string, b: string) => number;
+import { SortFunction } from '../util/SortFunctions';
 
 export class QuestionFormatter {
     private sortedAnswers: string[] = [];
