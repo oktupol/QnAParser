@@ -1,6 +1,6 @@
 import md5 from 'md5';
 
-export type SortFunctionName = 'length' | 'hash' | 'alphanum' | 'none';
+type SortFunctionName = 'length' | 'hash' | 'alphanum' | 'none';
 export type SortFunction = (a: string, b: string) => number;
 
 export class SortFunctions {
