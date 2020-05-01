@@ -16,7 +16,7 @@ export class QuestionFormatter {
     }
 
     private initializeAnswers(): void {
-        this.sortedAnswers = [...this.question.answers].map((a) => a.trim()).filter((a) => a.length > 0);
+        this.sortedAnswers = [...this.question.answers].map(a => a.trim()).filter(a => a.length > 0);
 
         this.sortedAnswers.sort(this.sortFn);
     }

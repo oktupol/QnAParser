@@ -19,7 +19,7 @@ program
     .option(
         '-s, --sort-function <function>',
         'Specify the sort function to be used for answers. Options are ' +
-            SortFunctions.sortFunctionNames.map((f) => `"${f}"`).join(', '),
+            SortFunctions.sortFunctionNames.map(f => `"${f}"`).join(', '),
         'length'
     );
 
@@ -30,7 +30,7 @@ Util.errorIf(isNaN(program.pageLength), 'Page length must be numeric.');
 Util.errorIf(isNaN(program.page), 'Page must be numeric.');
 Util.errorIf(
     !SortFunctions.sortFunctionNames.includes(program.sortFunction),
-    'Sort function must be one of ' + SortFunctions.sortFunctionNames.map((f) => `"${f}"`).join(', ')
+    'Sort function must be one of ' + SortFunctions.sortFunctionNames.map(f => `"${f}"`).join(', ')
 );
 
 const fileName: string = program.file;

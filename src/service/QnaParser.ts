@@ -18,7 +18,7 @@ export class QnaParser {
 
         // removing timestamp
 
-        rawRecords.forEach((r) => r.splice(0, 1));
+        rawRecords.forEach(r => r.splice(0, 1));
 
         // separating questions from answers
 
@@ -26,11 +26,11 @@ export class QnaParser {
 
         const answers = rawRecords.splice(1);
 
-        questions.forEach((question) => {
+        questions.forEach(question => {
             this.questions.push(
                 new Question(
                     question,
-                    answers.map((a) => a.shift() as string)
+                    answers.map(a => a.shift() as string)
                 )
             );
         });

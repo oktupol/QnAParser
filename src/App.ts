@@ -37,11 +37,11 @@ export class App {
     }
 
     private init(): void {
-        this.parser.questions.forEach((q) =>
+        this.parser.questions.forEach(q =>
             new QuestionFormatter(q, this.pageLength, this.pageHeaders, this.sortFunction).pages
-                .map((p) => p.trim())
-                .filter((p) => p.length > 0)
-                .forEach((p) => this.pages.push(p))
+                .map(p => p.trim())
+                .filter(p => p.length > 0)
+                .forEach(p => this.pages.push(p))
         );
     }
 
@@ -90,7 +90,7 @@ export class App {
         stdin.setRawMode(true);
         stdin.resume();
         stdin.setEncoding('utf8');
-        stdin.on('data', (key) => {
+        stdin.on('data', key => {
             let copy = false;
 
             switch (key.toString()) {
