@@ -16,6 +16,9 @@ export class SortFunctions {
                 return (a, b) => a.localeCompare(b);
             case 'none':
                 return () => 0;
+            default:
+                console.warn(`Illegal sort function name ${name}. Falling back to "none"`);
+                return this.getSortFunction('none');
         }
     }
 }
