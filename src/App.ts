@@ -63,11 +63,6 @@ export class App {
         console.log(chalk.blueBright(`Current page: ${page + 1}. Total page count: ${this.pages.length}`));
 
         if (page !== null) {
-            if (page < 0 || page >= this.pages.length) {
-                console.error(chalk.white.bgRed('Page number not in range'));
-                process.exit(1);
-            }
-
             console.log();
 
             if (this.markdown) {
