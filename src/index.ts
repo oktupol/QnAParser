@@ -6,6 +6,7 @@ import { QnaHostApp } from './QnaHostApp';
 import { Util } from './util/Util';
 import { SortFunctions, SortFunction } from './util/SortFunctions';
 import { Actions, Action } from './util/Actions';
+import { QnaPublisher } from './QnaPublisher';
 
 program
     .name('qnaparser')
@@ -33,8 +34,6 @@ Util.errorIf(
     !Actions.actionNames.includes(program.actionName),
     'Action name must be one of ' + Actions.actionNames.map(a => `"${a}"`).join(', ')
 );
-Util.errorIf(isNaN(program.pageLength), 'Page length must be numeric.');
-Util.errorIf(isNaN(program.page), 'Page must be numeric.');
 Util.errorIf(
     !SortFunctions.sortFunctionNames.includes(program.sortFunction),
     'Sort function must be one of ' + SortFunctions.sortFunctionNames.map(f => `"${f}"`).join(', ')
@@ -52,8 +51,14 @@ const sortFunction: SortFunction = SortFunctions.getSortFunction(program.sortFun
 
 switch (action) {
     case 'host':
+        Util.errorIf(isNaN(program.pageLength), 'Page length must be numeric.');
+        Util.errorIf(isNaN(program.page), 'Page must be numeric.');
+
         new QnaHostApp(fileName, pageLength, pageHeaders, page, copyAll, markdown, sortFunction).run();
         break;
     case 'publish':
-        Util.errorIf(outFileName === null || !fs.existsSync(outFileName), 'Output file is missing or not readable');
+        Util.errorIfNull(outFileName, 'Out file must be given');
+        Util.errorIf(!fs.existsSync(<string>outFileName), 'Output file is missing or not readable');
+
+        new QnaPublisher(fileName, <string>outFileName, sortFunction).publish();
 }

@@ -19,6 +19,11 @@ export class Util {
         });
     }
 
+    public static errorIfNull(variable: string | null, errorMessage: string): variable is string {
+        this.errorIf(variable === null, errorMessage);
+        return true;
+    }
+
     public static errorIf(condition: boolean, errorMessage: string): void {
         if (condition) {
             console.error(chalk.white.bgRed(errorMessage));
