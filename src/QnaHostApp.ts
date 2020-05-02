@@ -7,7 +7,7 @@ import { Util } from './util/Util';
 import { KeyboardShortcut } from './interface/KeyboardShortcut';
 import { SortFunction } from './util/SortFunctions';
 
-export class App {
+export class QnaHostApp {
     private parser: QnaParser;
 
     private pages: string[] = [];
@@ -78,7 +78,7 @@ export class App {
                 console.log(chalk.white.bgGreen('Copied to clipboard'));
             }
 
-            App.KEYBOARD_SHORTCUTS.forEach(({ key, action }) => {
+            QnaHostApp.KEYBOARD_SHORTCUTS.forEach(({ key, action }) => {
                 console.log(chalk.gray.bold(key) + chalk.gray(': ' + action));
             });
         }
