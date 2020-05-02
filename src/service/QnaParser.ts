@@ -1,11 +1,12 @@
 import fs from 'fs';
 import csvParse from 'csv-parse/lib/sync';
 import { Question } from '../model/Question';
+import { SortFunction } from '../util/SortFunctions';
 
 export class QnaParser {
     public questions: Question[] = [];
 
-    constructor(private fileName: string) {
+    constructor(private fileName: string, private sortFunction: SortFunction) {
         this.populate();
     }
 
@@ -30,7 +31,8 @@ export class QnaParser {
             this.questions.push(
                 new Question(
                     question,
-                    answers.map(a => a.shift() as string)
+                    answers.map(a => a.shift() as string),
+                    this.sortFunction
                 )
             );
         });

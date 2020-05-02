@@ -1,24 +1,16 @@
 import { Question } from '../model/Question';
-import { SortFunction } from '../util/SortFunctions';
 
 export class QuestionFormatter {
-    private sortedAnswers: string[] = [];
+    private answers: string[] = [];
     public pages: string[] = [];
 
-    constructor(
-        private question: Question,
-        private pageLength: number,
-        private includeTitleInEveryPage = false,
-        private sortFn: SortFunction = (a, b) => a.length - b.length
-    ) {
+    constructor(private question: Question, private pageLength: number, private includeTitleInEveryPage = false) {
         this.initializeAnswers();
         this.initializePages();
     }
 
     private initializeAnswers(): void {
-        this.sortedAnswers = this.question.answers.map(a => a.trim()).filter(a => a.length > 0);
-
-        this.sortedAnswers.sort(this.sortFn);
+        this.answers = this.question.answers;
     }
 
     private initializePages(): void {
@@ -26,14 +18,14 @@ export class QuestionFormatter {
         let nextPage = '';
         let i = 1;
 
-        while (this.sortedAnswers.length > 0) {
+        while (this.answers.length > 0) {
             if (nextPage.length === 0 && (firstPage || this.includeTitleInEveryPage)) {
                 // Print question as page header
                 nextPage += '*Q: ' + this.question.question.trim() + '*\n';
                 firstPage = false;
             }
 
-            nextPage += '\n*' + i++ + ':* ' + this.sortedAnswers.shift();
+            nextPage += '\n*' + i++ + ':* ' + this.answers.shift();
 
             if (nextPage.length >= this.pageLength) {
                 this.pages.push(nextPage);

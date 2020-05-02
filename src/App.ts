@@ -31,14 +31,14 @@ export class App {
         private markdown: boolean,
         private sortFunction: SortFunction
     ) {
-        this.parser = new QnaParser(this.fileName);
+        this.parser = new QnaParser(this.fileName, this.sortFunction);
         this.init();
         this.enforcePageLimits();
     }
 
     private init(): void {
         this.parser.questions.forEach(q =>
-            new QuestionFormatter(q, this.pageLength, this.pageHeaders, this.sortFunction).pages
+            new QuestionFormatter(q, this.pageLength, this.pageHeaders).pages
                 .map(p => p.trim())
                 .filter(p => p.length > 0)
                 .forEach(p => this.pages.push(p))

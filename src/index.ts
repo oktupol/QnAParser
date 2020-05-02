@@ -14,7 +14,7 @@ program
     .option('-l, --page-length <length>', 'The length after which a page should stop', '400')
     .option('-a, --page-headers', 'Specifies, that every page should contain the question as page header', false)
     .option('-p, --page <page>', 'Show specific page', '1')
-    .option('-c, --copy', 'Copy page to clipboard automatically', false)
+    .option('-y, --copy', 'Copy page to clipboard automatically', false)
     .option('-m, --markdown', 'Interpret basic markdown tags', false)
     .option(
         '-s, --sort-function <function>',

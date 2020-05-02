@@ -21,4 +21,8 @@ export class SortFunctions {
                 return this.getSortFunction('none');
         }
     }
+
+    static get defaultSortFunction(): SortFunction {
+        return SortFunctions.getSortFunction('length');
+    }
 }
