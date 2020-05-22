@@ -29,6 +29,7 @@ export class QnaHostApp {
         private currentPage: number,
         private copyAll: boolean,
         private markdown: boolean,
+        private indexes: boolean,
         private sortFunction: SortFunction
     ) {
         this.parser = new QnaParser(this.fileName, this.sortFunction);
@@ -38,7 +39,7 @@ export class QnaHostApp {
 
     private init(): void {
         this.parser.questions.forEach(q =>
-            new QuestionFormatter(q, this.pageLength, this.pageHeaders).pages
+            new QuestionFormatter(q, this.pageLength, this.pageHeaders, this.indexes).pages
                 .map(p => p.trim())
                 .filter(p => p.length > 0)
                 .forEach(p => this.pages.push(p))

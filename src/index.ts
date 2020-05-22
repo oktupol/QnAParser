@@ -20,6 +20,7 @@ program
     .option('-p, --page <page>', 'Show specific page', '1')
     .option('-y, --copy', 'Copy page to clipboard automatically', false)
     .option('-m, --markdown', 'Interpret basic markdown tags', false)
+    .option('-i, --indexes', 'Include question index in headings', false)
     .option(
         '-s, --sort-function <function>',
         'Specify the sort function to be used for answers. Options are ' +
@@ -47,6 +48,7 @@ const pageHeaders: boolean = program.pageHeaders;
 const page: number = Number(program.page) - 1;
 const copyAll: boolean = program.copy;
 const markdown: boolean = program.markdown;
+const indexes: boolean = program.indexes;
 const sortFunction: SortFunction = SortFunctions.getSortFunction(program.sortFunction);
 
 switch (action) {
@@ -54,7 +56,7 @@ switch (action) {
         Util.errorIf(isNaN(program.pageLength), 'Page length must be numeric.');
         Util.errorIf(isNaN(program.page), 'Page must be numeric.');
 
-        new QnaHostApp(fileName, pageLength, pageHeaders, page, copyAll, markdown, sortFunction).run();
+        new QnaHostApp(fileName, pageLength, pageHeaders, page, copyAll, markdown, indexes, sortFunction).run();
         break;
     case 'publish':
         Util.errorIfNull(outFileName, 'Out file must be given');

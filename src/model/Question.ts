@@ -3,6 +3,7 @@ import { SortFunctions, SortFunction } from '../util/SortFunctions';
 export class Question {
     constructor(
         public question: string,
+        public index: number,
         private _answers: string[],
         private sortFunction: SortFunction = SortFunctions.defaultSortFunction
     ) {}

@@ -4,7 +4,12 @@ export class QuestionFormatter {
     private answers: string[] = [];
     public pages: string[] = [];
 
-    constructor(private question: Question, private pageLength: number, private includeTitleInEveryPage = false) {
+    constructor(
+        private question: Question,
+        private pageLength: number,
+        private includeTitleInEveryPage = false,
+        private indexes = false
+    ) {
         this.initializeAnswers();
         this.initializePages();
     }
@@ -21,7 +26,12 @@ export class QuestionFormatter {
         while (this.answers.length > 0) {
             if (nextPage.length === 0 && (firstPage || this.includeTitleInEveryPage)) {
                 // Print question as page header
-                nextPage += '*Q: ' + this.question.question.trim() + '*\n';
+                if (this.indexes) {
+                    nextPage += `*Q${this.question.index + 1}: `;
+                } else {
+                    nextPage += '*Q: ';
+                }
+                nextPage += `${this.question.question.trim()}*\n`;
                 firstPage = false;
             }
 

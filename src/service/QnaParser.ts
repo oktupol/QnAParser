@@ -24,6 +24,7 @@ export class QnaParser {
         // separating questions from answers
 
         const questions = rawRecords[0];
+        let questionIndex = 0;
 
         const answers = rawRecords.splice(1);
 
@@ -31,6 +32,7 @@ export class QnaParser {
             this.questions.push(
                 new Question(
                     question,
+                    questionIndex++,
                     answers.map(a => a.shift() as string),
                     this.sortFunction
                 )
