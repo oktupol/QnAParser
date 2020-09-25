@@ -2,7 +2,7 @@ import chalk from 'chalk';
 
 export class Util {
     public static parseMarkdown(input: string): string {
-        return input.replace(/(_|\*|~)(\S.*\S)(\1)/g, (match, ...groups) => {
+        return input.replace(/(_|\*|~)(\S.*?\S)(\1)/g, (match, ...groups) => {
             const modifier = groups[0];
             const content = groups[1];
 
