@@ -15,7 +15,7 @@ program
     .requiredOption('-f, --file <file>', 'The QnA answer file to be parsed')
     .option('-c, --action-name <name>', 'Either "host" or "publish"', 'host')
     .option('-o, --out-file <file>', 'Specify the html file to which the answers should be published')
-    .option('-l, --page-length <length>', 'The length after which a page should stop', '400')
+    .option('-l, --page-length <length>', 'The length after which a page should stop', '500')
     .option('-a, --page-headers', 'Specifies, that every page should contain the question as page header', false)
     .option('-p, --page <page>', 'Show specific page', '1')
     .option('-y, --copy', 'Copy page to clipboard automatically', false)
